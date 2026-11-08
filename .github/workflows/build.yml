@@ -30,6 +30,10 @@ jobs:
         run: |
           unzip NeonTetrisAndroid_Project.zip -d project
 
+            - name: Fix Java version
+        run: |
+          sed -i '/buildFeatures { compose = true }/a\    compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }' project/app/build.gradle.kts
+
       - name: Build APK
         run: |
           cd project
